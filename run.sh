@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -ex
+set -e
 
 if [ ! -d /data/gitolite3 ]; then
 
@@ -16,8 +16,11 @@ if [ ! -d /data/gitolite3 ]; then
     mv /etc/ssh/ssh_host_key /data/ssh
     mv /etc/ssh/ssh_host_rsa_key /data/ssh
     mv /etc/ssh/ssh_host_dsa_key /data/ssh
+
+    exit 0
 fi
 
+rm -rf /var/lib/gitolite3
 ln -s /data/gitolite3 /var/lib/gitolite3
 ln -s /data/ssh/ssh_host_key /etc/ssh/ssh_host_key
 ln -s /data/ssh/ssh_host_rsa_key /etc/ssh/ssh_host_rsa_key

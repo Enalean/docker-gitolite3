@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -ex
+set -e
 
 HOSTNAME=$1
 SSH_ADMIN_KEY=$2
@@ -12,6 +12,7 @@ touch $HOME/.ssh/config
 chmod 0600 $HOME/.ssh/config
 
 ssh-keygen -P "" -f $HOME/.ssh/id_rsa >/dev/null 2>&1
+echo "Create a key named 'server-$HOSTNAME.pub' with following content: "
 cat $HOME/.ssh/id_rsa.pub
 
 sed -i "s/# HOSTNAME.*/HOSTNAME => \"$HOSTNAME\",/" $HOME/.gitolite.rc
